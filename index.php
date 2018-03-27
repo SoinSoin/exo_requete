@@ -14,10 +14,6 @@
     <body>
 
 
-<form method="post">
-
-
-</form>
 <input type="button" value="Nom Prenom"  id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#oua" data-recupbtn="nomPren">
 <input type="button"  value="genremusical" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#oua" data-recupbtn="genre">
 <input type="button"  value="les 20 premiers" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#oua" data-recupbtn="20premiers">
@@ -25,6 +21,8 @@
 <input type="button" value="nom M" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#oua" data-recupbtn="nomM">
 <input type="button" value="Spectacles" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#oua" data-recupbtn="spectacles">
 
+<input type="texte" id="letexte" name="insertgenre"data-recupbtn="valeur">
+<input type="button" value="envoyer" id="bouton" class="btn btn-primary" data-toggle="modal" data-target="#oua" data-recupbtn="envoyer">
 
 <div class="modal fade bd-example-modal-lg" id="oua" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -43,7 +41,7 @@
 
 
 <form method="post">
-<input type="submit" name="caca" value="thomas le gros batard">
+<!-- <input type="submit" name="caca" value=""> -->
 <?php
 
 $connect = mysqli_connect("127.0.0.1", "root", "1a2b3c4D", "colyseum");
@@ -65,7 +63,10 @@ while ($row = mysqli_fetch_array($lole))
 
 </form>
 
+<div id="script" data-autorefr="contenu">
 
+
+</div>
 
 
 

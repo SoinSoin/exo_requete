@@ -2,6 +2,36 @@
     <?php 
     $connect = mysqli_connect("127.0.0.1", "root", "1a2b3c4D", "colyseum");
     mysqli_set_charset($connect, 'utf8');
+
+    function envoi()
+    {
+        $connect = mysqli_connect("127.0.0.1", "root", "1a2b3c4D", "colyseum");
+        mysqli_set_charset($connect, 'utf8');
+        $valuet = $_POST['aenvoyer'];
+        if(!empty($valuet)){
+            echo$valuet;
+            $query = "INSERT INTO genres(genre) VALUES ('".$valuet."');";
+            if($result = mysqli_query($connect, $query)){
+                $result;
+                echo"_envoyé";
+            }
+            else{
+                echo$query;
+                echo"_pas envoyé";
+            }
+           
+        }
+        else{
+            echo"recommence";
+        }
+        
+        // $query = "INSERT INTO genres(genre) VALUES(genre='$valueText')";
+        // $lole = mysqli_query($connect, $query);
+    }
+
+
+
+
     function LastFistN()
     {
         $connect = mysqli_connect("127.0.0.1", "root", "1a2b3c4D", "colyseum");
@@ -19,6 +49,27 @@
         $tabbas .= "</tbody></table>";
         echo $tabbas;
     }
+    function autoFresh()
+    {
+        // echo "refresh c'est cool ";
+        $connect = mysqli_connect("127.0.0.1", "root", "1a2b3c4D", "colyseum");
+        mysqli_set_charset($connect, 'utf8');
+        $query = "SELECT DISTINCT genre FROM genres ORDER BY (genre);";
+        $result = mysqli_query($connect, $query);
+        $tabhaut .= "<table class='table'><thead class='thead-dark'><tr><th scope='col' class='text-center'>Genre</th>
+        </tr></thead><tbody >";
+        echo $tabhaut;
+        while ($row = mysqli_fetch_array($result)) {
+            $oui .= "<tr><td class='text-center'>" . $row["genre"] . "<br></td></tr>";
+        }
+        echo $oui;
+        $tabbas .= "</tbody></table>";
+        echo $tabbas;
+    }
+    // autoFresh();
+    $ref = $_POST['autorefresh'];
+
+
 
     function genre()
     {
@@ -88,7 +139,7 @@
         echo $name;
         $tabbas .= "</tbody></table>";
         echo $tabbas;
-    }
+    }   
     function SpectacleS()
     {
         $connect = mysqli_connect("127.0.0.1", "root", "1a2b3c4D", "colyseum");
@@ -101,7 +152,7 @@
         <th scope='col' class='text-center'>Artiste(s)</th><th scope='col' class='text-center'>date</th><th scope='col' class='text-center'>heure</th></tr></thead><tbody >";
         echo $tabhaut;
         while ($row = mysqli_fetch_array($result)) {
-            $name .= "<tr><td class='text-center'>" . $row["title"] . "</td> <td class='text-center'>" . $row["performer"] . "</td><td class='text-center'>" . $row["date"] . "</td><td class='text-center'>" . $row["startTime"]."</td></tr>";
+            $name .= "<tr><td class='text-center'>" . $row["title"] . "</td> <td class='text-center'>" . $row["performer"] . "</td><td class='text-center'>" . $row["date"] . "</td><td class='text-center'>" . $row["startTime"] . "</td></tr>";
         }
         echo $name;
         $tabbas .= "</tbody></table>";
@@ -126,10 +177,23 @@
             case 'nomM':
                 nomparM();
                 break;
-                case 'spectacles':
+            case 'spectacles':
                 SpectacleS();
-                break;    
+                break;
+            case 'envoyer':
+                envoi();
+                break;
         }
 
+    } elseif ($ref = 'contenu') {
+        autoFresh();
+
     }
-    ?>    
+
+
+
+
+
+
+
+    ?> 
